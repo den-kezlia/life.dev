@@ -9,7 +9,7 @@
 /* line 23, ../sass/app/app.scss */
 .life-cell:hover { cursor: pointer; background: #ccc; }
 /* line 28, ../sass/app/app.scss */
-.life-cell.active { background: #ccc; }
+.life-cell.active { background: #444; }
 
 /* line 33, ../sass/app/app.scss */
 .life-start { clear: both; width: 140px; height: 27px; margin-top: 30px; }

@@ -3,11 +3,13 @@ $(document).ready(function() {
         rows: 10,
         columns: 10,
         matrix: [],
+        isMatrixHold: false,
 
         init: function() {
             this.initMatrix();
             this.initLayout();
             this.initCellEvents();
+            this.initStartEvent();
         },
 
         initMatrix: function() {
@@ -40,9 +42,17 @@ $(document).ready(function() {
 
         initCellEvents: function() {
             $('.life-cell').click(function() {
-                var cell = $(this);
-                cell.toggleClass('active');
-                App.updateCellStatus(cell);
+                if ( !App.isMatrixHold ) {
+                    var cell = $(this);
+                    cell.toggleClass('active');
+                    App.updateCellStatus(cell);
+                }
+            });
+        },
+
+        initStartEvent: function() {
+            $("#life-start").click(function() {
+                App.isMatrixHold = true;
             });
         },
 
