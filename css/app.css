@@ -1,10 +1,17 @@
 /* line 1, ../sass/app/app.scss */
-.life-wrapper { border: 1px solid #000; overflow: hidden; }
+.life-wrapper { overflow: hidden; }
 
-/* line 6, ../sass/app/app.scss */
-.life-row { clear: both; }
+/* line 5, ../sass/app/app.scss */
+.life-row { clear: both; overflow: hidden; margin: 0; padding: 0; }
 
-/* line 10, ../sass/app/app.scss */
-.life-cell { border: 1px solid #000; width: 45px; height: 45px; line-height: 45px; text-align: center; float: left; list-style: none; }
+/* line 12, ../sass/app/app.scss */
+.life-cell { border: 1px solid #000; width: 45px; height: 45px; line-height: 45px; text-align: center; float: left; list-style: none; margin: 0; padding: 0; }
+/* line 23, ../sass/app/app.scss */
+.life-cell:hover { cursor: pointer; background: #ccc; }
+/* line 28, ../sass/app/app.scss */
+.life-cell.active { background: #ccc; }
+
+/* line 33, ../sass/app/app.scss */
+.life-start { clear: both; width: 140px; height: 27px; margin-top: 30px; }
 
 /*@ sourceMappingURL=app.css.map */

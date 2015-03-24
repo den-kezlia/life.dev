@@ -7,6 +7,7 @@ $(document).ready(function() {
         init: function() {
             this.initMatrix();
             this.initLayout();
+            this.initCellEvents();
         },
 
         initMatrix: function() {
@@ -21,17 +22,32 @@ $(document).ready(function() {
         initLayout: function() {
             var layoutHtml = $('<div class="life-wrapper" id="lifeMatrix" />');
 
-            for (var row = 1; row <= App.rows; row++) {
+            for (var row = 0; row < App.rows; row++) {
                 var line = $('<ul class="life-row" />');
-                for (var column = 1; column <= App.columns; column++) {
-                    var cell = $('<li class="life-cell">' + row + '-' + column + '</li>');
+                for (var column = 0; column < App.columns; column++) {
+                    var cell = $('<li class="life-cell" data-row="' + row + '" data-column="' + column + '">' + row + '-' + column + '</li>');
                     line.append(cell);
                 }
 
                 layoutHtml.append(line);
             }
 
+            var startButton = $('<button id="life-start" class="life-start">Start</button>');
+            layoutHtml.append(startButton);
+
             $('body').append( layoutHtml );
+        },
+
+        initCellEvents: function() {
+            $('.life-cell').click(function() {
+                var cell = $(this);
+                cell.toggleClass('active');
+                App.updateCellStatus(cell);
+            });
+        },
+
+        updateCellStatus: function(cell) {
+            App.matrix[ cell.data('row') ][ cell.data('column') ] = true;
         }
     };
 
