@@ -2,9 +2,20 @@ $(document).ready(function() {
     App = {
         rows: 10,
         columns: 10,
+        matrix: [],
 
         init: function() {
+            this.initMatrix();
             this.initLayout();
+        },
+
+        initMatrix: function() {
+            for (var row = 0; row < App.rows; row++) {
+                App.matrix[row] = [];
+                for (var column = 0; column < App.columns; column++) {
+                    App.matrix[row][column] = false;
+                }
+            }
         },
 
         initLayout: function() {
