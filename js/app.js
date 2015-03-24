@@ -4,6 +4,7 @@ $(document).ready(function() {
         columns: 10,
         matrix: [],
         isMatrixHold: false,
+        interval: 1000,
 
         init: function() {
             this.initMatrix();
@@ -53,11 +54,22 @@ $(document).ready(function() {
         initStartEvent: function() {
             $("#life-start").click(function() {
                 App.isMatrixHold = true;
+                App.startLife();
             });
         },
 
         updateCellStatus: function(cell) {
             App.matrix[ cell.data('row') ][ cell.data('column') ] = true;
+        },
+
+        startLife: function() {
+            setInterval(function() {
+                App.recalculate();
+            }, App.interval);
+        },
+
+        recalculate: function() {
+
         }
     };
 
