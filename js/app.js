@@ -69,6 +69,22 @@ $(document).ready(function() {
         },
 
         recalculate: function() {
+            for (var row = 0; row < App.rows; row++) {
+                for (var column = 0; column < App.columns; column++) {
+                    if (App.matrix[row][column]) {
+                        App.checkIfToGenerate( App.matrix[row][column] );
+                    } else {
+                        App.checkIfToDie( App.matrix[row][column] );
+                    }
+                }
+            }
+        },
+
+        checkIfToGenerate: function() {
+
+        },
+
+        checkIfToDie: function() {
 
         }
     };
