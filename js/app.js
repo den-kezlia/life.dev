@@ -1,10 +1,10 @@
 $(document).ready(function() {
     App = {
-        rows: 10,
-        columns: 10,
+        rows: 5,
+        columns: 5,
         matrix: [],
         isMatrixHold: false,
-        interval: 1000,
+        interval: 2000,
 
         init: function() {
             this.initMatrix();
@@ -72,20 +72,93 @@ $(document).ready(function() {
             for (var row = 0; row < App.rows; row++) {
                 for (var column = 0; column < App.columns; column++) {
                     if (App.matrix[row][column]) {
-                        App.checkIfToGenerate( App.matrix[row][column] );
+                        App.checkIfToDie(row, column);
                     } else {
-                        App.checkIfToDie( App.matrix[row][column] );
+                        App.checkIfToGenerate(row, column);
                     }
                 }
             }
         },
 
-        checkIfToGenerate: function() {
+        checkIfToGenerate: function(row, column) {
+            var lives = App.calculateHowManyLives(row, column);
 
+            if (lives == 3) {
+                App.matrix[row][column] = true;
+                $(".life-cell[data-row='" + row + "'][data-column='" + column + "']").addClass("active");
+            }
+
+            console.log(lives);
         },
 
-        checkIfToDie: function() {
+        checkIfToDie: function(row, column) {
+            var lives = App.calculateHowManyLives(row, column);
 
+            if (lives < 2 || lives > 3) {
+                App.matrix[row][column] = false;
+                $(".life-cell[data-row='" + row + "'][data-column='" + column + "']").removeClass("active");
+            }
+        },
+
+        isCellExist: function(row, column){
+            if ( (row != -1 && column != -1) && (row <= App.rows - 1 && column <= App.columns - 1) ) {
+                return true;
+            }
+        },
+
+        calculateHowManyLives: function(row, column) {
+            var matrix = App.matrix;
+            var lives = 0;
+
+            if (App.isCellExist(row - 1, column - 1)) {
+                if (matrix[row - 1][column - 1]) {
+                    lives++;
+                }
+            }
+
+            if (App.isCellExist(row - 1, column)) {
+                if (matrix[row - 1][column]) {
+                    lives++;
+                }
+            }
+
+            if (App.isCellExist(row - 1, column + 1)) {
+                if (matrix[row - 1][column + 1]) {
+                    lives++;
+                }
+            }
+
+            if (App.isCellExist(row, column - 1)) {
+                if (matrix[row][column - 1]) {
+                    lives++;
+                }
+            }
+
+            if (App.isCellExist(row, column + 1)) {
+                if (matrix[row][column + 1]) {
+                    lives++;
+                }
+            }
+
+            if (App.isCellExist(row + 1, column - 1)) {
+                if (matrix[row + 1][column - 1]) {
+                    lives++;
+                }
+            }
+
+            if (App.isCellExist(row + 1, column)) {
+                if (matrix[row + 1][column]) {
+                    lives++;
+                }
+            }
+
+            if (App.isCellExist(row + 1, column + 1)) {
+                if (matrix[row + 1][column + 1]) {
+                    lives++;
+                }
+            }
+
+            return lives;
         }
     };
 
