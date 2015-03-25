@@ -1,3 +1,5 @@
+$cell-size: 25px;
+
 .life-wrapper {
   overflow: hidden;
 }
@@ -10,10 +12,12 @@
   }
 
   .life-cell {
-    border: 1px solid #000;
-    width: 45px;
-    height: 45px;
-    line-height: 45px;
+    font-size: 8px;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    width: $cell-size;
+    height: $cell-size;
+    line-height: $cell-size;
     text-align: center;
     float: left;
     list-style: none;

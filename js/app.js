@@ -1,9 +1,9 @@
 $(document).ready(function() {
     App = {
-        rows: 5,
-        columns: 5,
+        rows: 30,
+        columns: 30,
         matrix: [],
-        interval: 2000,
+        interval: 500,
 
         init: function() {
             this.initMatrix();
@@ -61,10 +61,12 @@ $(document).ready(function() {
         startLife: function() {
             setInterval(function() {
                 App.recalculate();
+                App.rerenderLayout();
             }, App.interval);
         },
 
         recalculate: function() {
+            App.regeneratedMatrix = [];
             for (var row = 0; row < App.rows; row++) {
                 for (var column = 0; column < App.columns; column++) {
                     if (App.matrix[row][column]) {
@@ -80,19 +82,15 @@ $(document).ready(function() {
             var lives = App.calculateHowManyLives(row, column);
 
             if (lives == 3) {
-                App.matrix[row][column] = true;
-                $(".life-cell[data-row='" + row + "'][data-column='" + column + "']").addClass("active");
+                App.regeneratedMatrix.push(row + ',' + column + ',true');
             }
-
-            console.log(lives);
         },
 
         checkIfToDie: function(row, column) {
             var lives = App.calculateHowManyLives(row, column);
 
             if (lives < 2 || lives > 3) {
-                App.matrix[row][column] = false;
-                $(".life-cell[data-row='" + row + "'][data-column='" + column + "']").removeClass("active");
+                App.regeneratedMatrix.push(row + ',' + column + ',false');
             }
         },
 
@@ -155,6 +153,22 @@ $(document).ready(function() {
             }
 
             return lives;
+        },
+
+        rerenderLayout: function(){
+            for (var iterator = 0; iterator < App.regeneratedMatrix.length; iterator++) {
+                var cell = App.regeneratedMatrix[iterator].split(",");
+
+                if (cell[2] == "true") {
+                    App.matrix[cell[0]][cell[1]] = true;
+                    $(".life-cell[data-row='" + cell[0] + "'][data-column='" + cell[1] + "']").addClass("active");
+                } else {
+                    App.matrix[cell[0]][cell[1]] = false;
+                    $(".life-cell[data-row='" + cell[0] + "'][data-column='" + cell[1] + "']").removeClass("active");
+                }
+            }
+
+            //$(".life-cell[data-row='" + row + "'][data-column='" + column + "']").removeClass("active");
         }
     };
 
