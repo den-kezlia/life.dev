@@ -3,7 +3,6 @@ $(document).ready(function() {
         rows: 5,
         columns: 5,
         matrix: [],
-        isMatrixHold: false,
         interval: 2000,
 
         init: function() {
@@ -43,17 +42,14 @@ $(document).ready(function() {
 
         initCellEvents: function() {
             $('.life-cell').click(function() {
-                if ( !App.isMatrixHold ) {
-                    var cell = $(this);
-                    cell.toggleClass('active');
-                    App.updateCellStatus(cell);
-                }
+                var cell = $(this);
+                cell.toggleClass('active');
+                App.updateCellStatus(cell);
             });
         },
 
         initStartEvent: function() {
             $("#life-start").click(function() {
-                App.isMatrixHold = true;
                 App.startLife();
             });
         },
