@@ -3,7 +3,7 @@ $(document).ready(function() {
         rows: 30,
         columns: 30,
         matrix: [],
-        interval: 500,
+        interval: 250,
 
         init: function() {
             this.initMatrix();
@@ -27,7 +27,7 @@ $(document).ready(function() {
             for (var row = 0; row < App.rows; row++) {
                 var line = $('<ul class="life-row" />');
                 for (var column = 0; column < App.columns; column++) {
-                    var cell = $('<li class="life-cell" data-row="' + row + '" data-column="' + column + '">' + row + '-' + column + '</li>');
+                    var cell = $('<li class="life-cell" data-row="' + row + '" data-column="' + column + '"></li>');
                     line.append(cell);
                 }
 
@@ -35,9 +35,9 @@ $(document).ready(function() {
             }
 
             var startButton = $('<button id="life-start" class="life-start">Start</button>');
-            layoutHtml.append(startButton);
 
             $('body').append( layoutHtml );
+            $('body').append( startButton );
         },
 
         initCellEvents: function() {
@@ -55,7 +55,12 @@ $(document).ready(function() {
         },
 
         updateCellStatus: function(cell) {
-            App.matrix[ cell.data('row') ][ cell.data('column') ] = true;
+            if (App.matrix[ cell.data('row') ][ cell.data('column') ]) {
+                App.matrix[ cell.data('row') ][ cell.data('column') ] = false;
+            } else {
+                App.matrix[ cell.data('row') ][ cell.data('column') ] = true;
+            }
+
         },
 
         startLife: function() {
@@ -167,8 +172,6 @@ $(document).ready(function() {
                     $(".life-cell[data-row='" + cell[0] + "'][data-column='" + cell[1] + "']").removeClass("active");
                 }
             }
-
-            //$(".life-cell[data-row='" + row + "'][data-column='" + column + "']").removeClass("active");
         }
     };
 
