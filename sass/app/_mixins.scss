@@ -1,0 +1,45 @@
+@mixin respond($media) {
+  @if $media == 'print' {
+    @media only print{ @content; }
+  }
+  @else if $media == 'small' {
+    // 0-320
+    @media only screen and (max-width: $large-breakpoint - 1) { @content; }
+  }
+  @else if $media == 'x-small' {
+    // 320-479
+    @media only screen and (min-width: $small-breakpoint) and (max-width: $medium-breakpoint - 1) { @content; }
+  }
+  @else if $media == 'm-small' {
+    // 480-767
+    @media only screen and (min-width: $medium-breakpoint) and (max-width: $large-breakpoint - 1) { @content; }
+  }
+  @else if $media == 'medium' {
+    // 768+
+    @media only screen and (min-width: $large-breakpoint) { @content; }
+  }
+  @else if $media == 'large' {
+    // 1025+
+    @media only screen and (min-width: $tablet-breakpoint + 1) { @content; }
+  }
+  @else if $media == 'large-only' {
+    // 768-1024
+    @media only screen and (min-width: $large-breakpoint) and (max-width: $tablet-breakpoint) { @content; }
+  }
+  @else if $media == 'large-down' {
+    // 0-767
+    // Try not to use this media query.  Please design with a mobile-first approach!
+    @media only screen and (max-width: $large-breakpoint - 1) { @content; }
+  }
+  @else if $media == 'large-up' {
+    // 768+
+    @media only screen and (min-width: $large-breakpoint) { @content; }
+  }
+  @else if $media == 'x-large' {
+    // 1200+
+    @media only screen and (min-width: $desktop-breakpoint) { @content; }
+  }
+  @else if type-of($media) == number {
+    @media only screen and (min-width: $media) { @content; }
+  }
+}

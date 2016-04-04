@@ -1,7 +1,7 @@
 $(document).ready(function() {
     App = {
-        rows: 30,
-        columns: 30,
+        rows: 25,
+        columns: 25,
         matrix: [],
         interval: 250,
 
@@ -27,7 +27,7 @@ $(document).ready(function() {
             for (var row = 0; row < App.rows; row++) {
                 var line = $('<ul class="life-row" />');
                 for (var column = 0; column < App.columns; column++) {
-                    var cell = $('<li class="life-cell" data-row="' + row + '" data-column="' + column + '"></li>');
+                    var cell = $('<li class="life-cell" data-row="' + row + '" data-column="' + column + '"><img src="img/cell.jpg" alt="cell"></li>');
                     line.append(cell);
                 }
 
@@ -36,8 +36,8 @@ $(document).ready(function() {
 
             var startButton = $('<button id="life-start" class="life-start">Start</button>');
 
-            $('body').append( layoutHtml );
             $('body').append( startButton );
+            $('body').append( layoutHtml );
         },
 
         initCellEvents: function() {
