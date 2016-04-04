@@ -1,7 +1,7 @@
 @import "variables";
 @import "mixins";
 
-html, body {
+html, body, #game {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -16,6 +16,7 @@ html, body {
 body {
   background: $bg-color;
   text-align: center;
+  font-family: Arial, sans-serif;
 }
 
 .life-wrapper {
@@ -28,18 +29,17 @@ body {
   border-right: none;
   border-radius: 3px;
   box-sizing: border-box;
+  @include respond(m-small) {
+    width: 40%;
+    margin: 5px auto 0;
+  }
   @include respond(medium) {
-    position: absolute;
+    position: relative;
     left: 50%;
     top: 50%;
-    width: 80%;
-    margin-left: -40%;
-    margin-top: -40%;
-  }
-  @include respond(large) {
-    width: 50%;
-    margin-left: -25%;
-    margin-top: -25%;
+    width: $game-size;
+    margin-left: - ($game-size / 2);
+    margin-top: - ($game-size / 2);
   }
 }
 
@@ -90,12 +90,10 @@ body {
 
 .life-start {
   clear: both;
-  width: 140px;
-  height: 27px;
+  width: 160px;
+  height: 33px;
   margin-top: 20px;
-}
-
-button {
+  margin-bottom: -53px;
   border: none;
   background: $button-bg;
   color: $button-color;
@@ -103,6 +101,19 @@ button {
   border-radius: 3px;
   &:hover {
     cursor: pointer;
-    background: $button-bg-hover;
+    background: darken($button-bg, 10);
+    color: lighten($button-color, 10);
   }
+  @include respond(m-small) {
+    float: left;
+    margin-left: 15px;
+    width: 100px;
+  }
+}
+
+.description {
+  color: white;
+  font-size: 14px;
+  line-height: 21px;
+  display: none;
 }

@@ -23,6 +23,7 @@ $(document).ready(function() {
 
         initLayout: function() {
             var layoutHtml = $('<div class="life-wrapper" id="lifeMatrix" />');
+            var gameBlock = $('#game');
 
             for (var row = 0; row < App.rows; row++) {
                 var line = $('<ul class="life-row" />');
@@ -36,8 +37,8 @@ $(document).ready(function() {
 
             var startButton = $('<button id="life-start" class="life-start">Start</button>');
 
-            $('body').append( startButton );
-            $('body').append( layoutHtml );
+            gameBlock.prepend( layoutHtml );
+            gameBlock.prepend( startButton );
         },
 
         initCellEvents: function() {

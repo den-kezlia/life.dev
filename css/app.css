@@ -1,7 +1,7 @@
 /* Colors */
 /* Variables */
 /* Viewports */
-html, body {
+html, body, #game {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -13,7 +13,8 @@ html, body {
 
 body {
   background: #404040;
-  text-align: center; }
+  text-align: center;
+  font-family: Arial, sans-serif; }
 
 .life-wrapper {
   overflow: hidden;
@@ -25,19 +26,18 @@ body {
   border-right: none;
   border-radius: 3px;
   box-sizing: border-box; }
+  @media only screen and (min-width: 480px) and (max-width: 767px) {
+    .life-wrapper {
+      width: 40%;
+      margin: 5px auto 0; } }
   @media only screen and (min-width: 768px) {
     .life-wrapper {
-      position: absolute;
+      position: relative;
       left: 50%;
       top: 50%;
-      width: 80%;
-      margin-left: -40%;
-      margin-top: -40%; } }
-  @media only screen and (min-width: 1025px) {
-    .life-wrapper {
-      width: 50%;
-      margin-left: -25%;
-      margin-top: -25%; } }
+      width: 34%;
+      margin-left: -17%;
+      margin-top: -17%; } }
 
 .life-row {
   clear: both;
@@ -77,18 +77,29 @@ body {
 
 .life-start {
   clear: both;
-  width: 140px;
-  height: 27px;
-  margin-top: 20px; }
-
-button {
+  width: 160px;
+  height: 33px;
+  margin-top: 20px;
+  margin-bottom: -53px;
   border: none;
   background: #355D7F;
   color: #E5E24D;
   font-size: 14px;
   border-radius: 3px; }
-  button:hover {
+  .life-start:hover {
     cursor: pointer;
-    background: #26435b; }
+    background: #26435b;
+    color: #ece97a; }
+  @media only screen and (min-width: 480px) and (max-width: 767px) {
+    .life-start {
+      float: left;
+      margin-left: 15px;
+      width: 100px; } }
+
+.description {
+  color: white;
+  font-size: 14px;
+  line-height: 21px;
+  display: none; }
 
 /*# sourceMappingURL=app.css.map */
