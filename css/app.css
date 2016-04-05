@@ -29,7 +29,8 @@ body {
   @media only screen and (min-width: 480px) and (max-width: 767px) {
     .life-wrapper {
       width: 40%;
-      margin: 5px auto 0; } }
+      margin: 5px auto 0;
+      float: left; } }
   @media only screen and (min-width: 768px) {
     .life-wrapper {
       position: relative;
@@ -75,26 +76,30 @@ body {
     height: auto;
     opacity: 0; }
 
-.life-start {
+.life-button {
   clear: both;
   width: 160px;
   height: 33px;
-  margin-top: 20px;
-  margin-bottom: -53px;
+  margin: 20px 15px -53px;
   border: none;
   background: #355D7F;
   color: #E5E24D;
   font-size: 14px;
   border-radius: 3px; }
-  .life-start:hover {
+  .life-button:hover {
     cursor: pointer;
     background: #26435b;
     color: #ece97a; }
   @media only screen and (min-width: 480px) and (max-width: 767px) {
-    .life-start {
-      float: left;
-      margin-left: 15px;
-      width: 100px; } }
+    .life-button {
+      width: 100px;
+      margin: 15px 0;
+      display: block; } }
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .buttons-wrapper {
+    float: left;
+    margin: 0 15px; } }
 
 .description {
   color: white;

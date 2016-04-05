@@ -4,6 +4,7 @@ $(document).ready(function() {
         columns: 25,
         matrix: [],
         interval: 250,
+        isStarted: false,
 
         init: function() {
             this.initMatrix();
@@ -35,8 +36,9 @@ $(document).ready(function() {
                 layoutHtml.append(line);
             }
 
-            var startButton = $('<button id="life-start" class="life-start">Start</button>');
+            var startButton = $('<div class="buttons-wrapper" id="buttons-wrapper"><button id="life-start" class="life-button">Start</button></div>');
 
+            gameBlock.html('');
             gameBlock.prepend( layoutHtml );
             gameBlock.prepend( startButton );
         },
@@ -50,8 +52,12 @@ $(document).ready(function() {
         },
 
         initStartEvent: function() {
-            $("#life-start").click(function() {
-                App.startLife();
+            $('#life-start').on('click', function() {
+                if (App.isStarted) {
+                    App.stopLife();
+                } else {
+                    App.startLife();
+                }
             });
         },
 
@@ -61,14 +67,36 @@ $(document).ready(function() {
             } else {
                 App.matrix[ cell.data('row') ][ cell.data('column') ] = true;
             }
-
         },
 
         startLife: function() {
-            setInterval(function() {
+            App.isStarted = true;
+            $('#life-start').text('Pause');
+
+            App.initReset();
+
+            App.timer = setInterval(function() {
                 App.recalculate();
                 App.rerenderLayout();
             }, App.interval);
+        },
+
+        stopLife: function() {
+            App.isStarted = false;
+            $('#life-start').text('Start');
+            clearTimeout(App.timer);
+        },
+
+        initReset: function() {
+            if ($('#life-reset').size() === 0) {
+                $('#buttons-wrapper').append('<button id="life-reset" class="life-button">Reset</button>');
+
+                $('#life-reset').on('click', function() {
+                    App.isStarted = false;
+                    clearTimeout(App.timer);
+                    App.init();
+                });
+            }
         },
 
         recalculate: function() {

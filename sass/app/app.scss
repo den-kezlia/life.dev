@@ -32,6 +32,7 @@ body {
   @include respond(m-small) {
     width: 40%;
     margin: 5px auto 0;
+    float: left;
   }
   @include respond(medium) {
     position: relative;
@@ -88,12 +89,11 @@ body {
   }
 }
 
-.life-start {
+.life-button {
   clear: both;
   width: 160px;
   height: 33px;
-  margin-top: 20px;
-  margin-bottom: -53px;
+  margin: 20px 15px -53px;
   border: none;
   background: $button-bg;
   color: $button-color;
@@ -105,9 +105,16 @@ body {
     color: lighten($button-color, 10);
   }
   @include respond(m-small) {
-    float: left;
-    margin-left: 15px;
     width: 100px;
+    margin: 15px 0;
+    display: block;
+  }
+}
+
+.buttons-wrapper {
+  @include respond(m-small) {
+    float: left;
+    margin: 0 15px;
   }
 }
 
