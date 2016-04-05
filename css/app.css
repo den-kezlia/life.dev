@@ -105,7 +105,46 @@ body {
   color: white;
   font-size: 14px;
   line-height: 21px;
-  display: none; }
+  position: absolute;
+  top: 20px;
+  right: 0; }
+  .description .description-link {
+    display: block;
+    float: right;
+    margin-right: 15px;
+    width: 33px;
+    height: 33px;
+    text-decoration: none;
+    background: url(../img/svg/question.svg); }
+    .description .description-link:hover .description-info-outer {
+      height: auto;
+      opacity: 1;
+      padding: 20px; }
+  .description .description-info-outer {
+    display: block;
+    position: absolute;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    width: 300px;
+    color: white;
+    text-align: left;
+    text-decoration: none;
+    background: #404040;
+    border: 3px dotted #355D7F;
+    margin-top: 35px;
+    right: 15px;
+    border-radius: 3px;
+    box-sizing: border-box; }
+    .description .description-info-outer ul {
+      margin: 0;
+      padding: 0;
+      list-style: none; }
+      .description .description-info-outer ul li {
+        margin-bottom: 10px;
+        font-size: 12px; }
+        .description .description-info-outer ul li:last-child {
+          margin-bottom: 0; }
 
 iframe {
   border: none; }

@@ -122,7 +122,54 @@ body {
   color: white;
   font-size: 14px;
   line-height: 21px;
-  display: none;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  .description-link {
+    display: block;
+    float: right;
+    margin-right: 15px;
+    width: 33px;
+    height: 33px;
+    text-decoration: none;
+    background: url(../img/svg/question.svg);
+    &:hover {
+      .description-info-outer {
+        height: auto;
+        opacity: 1;
+        padding: 20px;
+      }
+    }
+  }
+  .description-info-outer {
+    display: block;
+    position: absolute;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    width: 300px;
+    color: white;
+    text-align: left;
+    text-decoration: none;
+    background: $bg-color;
+    border: 3px dotted $border-color;
+    margin-top: 35px;
+    right: 15px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        margin-bottom: 10px;
+        font-size: 12px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }
 
 iframe {
